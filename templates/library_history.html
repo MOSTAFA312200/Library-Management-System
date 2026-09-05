@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}
+Library History
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+
+    <h1>Library History</h1>
+
+    <p>
+        View all borrowing and returning operations in the library.
+    </p>
+
+</section>
+
+
+{% if history %}
+
+    <section class="books-grid">
+
+        {% for record in history %}
+
+            <div class="card">
+
+                <h2>
+                    {{ record["title"] }}
+                </h2>
+
+                <p>
+                    <strong>Member:</strong>
+                    {{ record["full_name"] }}
+                </p>
+
+                <p>
+                    <strong>Username:</strong>
+                    {{ record["username"] }}
+                </p>
+
+                <p>
+                    <strong>Author:</strong>
+                    {{ record["author"] }}
+                </p>
+
+                <p>
+                    <strong>ISBN:</strong>
+                    {{ record["isbn"] }}
+                </p>
+
+                <p>
+                    <strong>Borrowed At:</strong>
+                    {{ record["borrowed_at"] }}
+                </p>
+
+
+                {% if record["returned_at"] %}
+
+                    <p>
+                        <strong>Returned At:</strong>
+                        {{ record["returned_at"] }}
+                    </p>
+
+                {% else %}
+
+                    <p>
+                        <strong>Returned At:</strong>
+                        Not returned yet
+                    </p>
+
+                {% endif %}
+
+
+                <p>
+                    <strong>Status:</strong>
+
+                    {% if record["status"] == "borrowed" %}
+
+                        Borrowed
+
+                    {% else %}
+
+                        Returned
+
+                    {% endif %}
+
+                </p>
+
+            </div>
+
+        {% endfor %}
+
+    </section>
+
+{% else %}
+
+    <div class="card">
+
+        <h2>No Library History</h2>
+
+        <p>
+            There are no borrowing or returning operations yet.
+        </p>
+
+    </div>
+
+{% endif %}
+
+
+<div class="button-group">
+
+    <a
+        href="{{ url_for('librarian_dashboard') }}"
+        class="btn"
+    >
+        Back to Dashboard
+    </a>
+
+</div>
+
+{% endblock %}
