@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Book
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+
+    <h1>Edit Book</h1>
+
+    <p>
+        Update the information for this book.
+    </p>
+
+</section>
+
+
+<div class="card">
+
+    <form
+        method="POST"
+        class="form"
+    >
+
+        <label for="title">
+            Title
+        </label>
+
+        <input
+            type="text"
+            id="title"
+            name="title"
+            value="{{ book['title'] }}"
+            required
+        >
+
+
+        <label for="author">
+            Author
+        </label>
+
+        <input
+            type="text"
+            id="author"
+            name="author"
+            value="{{ book['author'] }}"
+            required
+        >
+
+
+        <label for="category">
+            Category
+        </label>
+
+        <input
+            type="text"
+            id="category"
+            name="category"
+            value="{{ book['category'] }}"
+            required
+        >
+
+
+        <label for="isbn">
+            ISBN
+        </label>
+
+        <input
+            type="text"
+            id="isbn"
+            name="isbn"
+            value="{{ book['isbn'] }}"
+            required
+        >
+
+
+        <label for="description">
+            Description
+        </label>
+
+        <textarea
+            id="description"
+            name="description"
+            rows="5"
+        >{{ book['description'] or '' }}</textarea>
+
+
+        <div class="button-group">
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                Update Book
+            </button>
+
+
+            <a
+                href="{{ url_for('admin_books') }}"
+                class="btn"
+            >
+                Cancel
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
